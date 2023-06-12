@@ -52,7 +52,7 @@ app.post("/register/", async (request, response) => {
   const userAlreadyExistsQuery = `select * from user where username = '${username}'`;
   const userAlreadyExists = await db.get(userAlreadyExistsQuery);
   if (userAlreadyExists === undefined) {
-    if (password < 6) {
+    if (password.length < 6) {
       response.status(400);
       response.send("Password is too short");
     } else {
